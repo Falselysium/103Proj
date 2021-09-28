@@ -7,8 +7,8 @@ if (( $# != 1 )) ; then
 	exit 1
 fi
 
-rcpt=$(basename $1)-rcpt.html
-sha1=$(sha1sum $1 | head -c40)
+rcpt=$(basename $1)-rcpt.html || exit 127
+sha1=$(sha1sum $1 | head -c40) || exit 127
 
 curl -k --form "file=@$1" --form lname=$lastname --form sid=$sidlast4 \
 	"https://www-cs.ccny.cuny.edu/~wes/CSC103/upload_file.php" > $rcpt
