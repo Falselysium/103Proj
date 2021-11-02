@@ -218,7 +218,7 @@
 <!---}}-->
 <!---{{ Details-->
 <h2 id="details">Details</h2>
-<p>Your program should reliably remove single and multi line comments like these:</p>
+<p>Your program should reliably remove single and multi line comments like these:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// double slash comments like this one</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">/* multiline slash+star ...</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">   star+slash comments like this one */</span></span></code></pre></div>
@@ -232,7 +232,7 @@
 <!---{{ Hints-->
 <h2 id="hints">Hints</h2>
 <h3 id="implementing-state-machines">Implementing State Machines</h3>
-<p>I realize state diagrams don’t look much like C++, but it is actually easy to convert. Just use an integer for which state you are in, and update it according to the diagram as you read characters. You need to have a special case to handle every <em>arrow</em> in your diagram.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If you think about it, the space where these arrows live should be a subset of the Cartesian product <span class="math inline"><em>s</em><em>t</em><em>a</em><em>t</em><em>e</em><em>s</em> × <em>c</em><em>l</em><em>a</em><em>s</em><em>s</em><em>e</em><em>s</em></span>: where <span class="math inline"><em>c</em><em>l</em><em>a</em><em>s</em><em>s</em><em>e</em><em>s</em></span> refers to the different types of characters you need to handle (e.g. whitespace vs normal chars…). And hence the high level structure will reflect this product. This is often done with a switch statement, but <code>if...else</code> is fine as well. Here’s a generic outline:</p>
+<p>I realize state diagrams don’t look much like C++, but it is actually easy to convert. Just use an integer for which state you are in, and update it according to the diagram as you read characters. You need to have a special case to handle every <em>arrow</em> in your diagram.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> If you think about it, the space where these arrows live should be a subset of the Cartesian product <span class="math inline"><em>s</em><em>t</em><em>a</em><em>t</em><em>e</em><em>s</em> × <em>c</em><em>l</em><em>a</em><em>s</em><em>s</em><em>e</em><em>s</em></span>: where <span class="math inline"><em>c</em><em>l</em><em>a</em><em>s</em><em>s</em><em>e</em><em>s</em></span> refers to the different types of characters you need to handle (e.g. whitespace vs normal chars…). And hence the high level structure will reflect this product. This is often done with a switch statement, but <code>if...else</code> is fine as well. Here’s a generic outline:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp numberLines"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a>state s = stateA;</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="dt">char</span> c;</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="cf">while</span> (<span class="co">/* read a new character into c */</span>) {</span>
@@ -293,7 +293,7 @@
 <!---}}-->
 <!---{{ Subtleties-->
 <h2 id="some-subtle-points">Some Subtle Points</h2>
-<p>The most notable issue you might face is handling string literals:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>The most notable issue you might face is handling string literals:<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>string fml = <span class="st">&quot;/* this is not a comment lol */&quot;</span>;</span></code></pre></div>
 <p>So your program will have to have some awareness of whether or not it is currently reading characters inside a string literal. Don’t forget to handle an escaped quote:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ex">string</span> fml2 = <span class="st">&quot;end of string is not </span><span class="dt">\&quot;</span><span class="st">here</span><span class="dt">\&quot;</span><span class="st">, but here.&quot;</span><span class="kw">;</span></span></code></pre></div>
@@ -354,7 +354,7 @@
 <!---}}-->
 <!---{{ Submission Procedure-->
 <h2 id="submission-procedure">Submission Procedure</h2>
-<p>Assuming you have the <code>postdata</code> file all set with your info,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> just run:</p>
+<p>Assuming you have the <code>postdata</code> file all set with your info,<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> just run:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>$ <span class="bu">cd</span> ~/csc103-projects/</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>$ <span class="ex">./submit.sh</span> p4/rmcomments.cpp    # turn in your code</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>$ <span class="ex">./submit.sh</span> p4/diagram.dot       # turn in your finite state machine</span></code></pre></div>
@@ -387,9 +387,10 @@
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Possible exception would be if you have a self-arrow (state doesn’t change) where no other actions need to be taken, e.g., when you are in the middle of ignoring a comment.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>I think you should not have to worry about <em>character literals</em> (single quotes) if you assume the input is valid C/C++.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>If you need more detailed instructions on setting this up, please consult the project 1 readme.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Note that the C preprocessor will also do this, among other things. If you are curious, the invocation would be something like <code>$ cpp -fpreprocessed -P inputfile.cpp -o -</code>. See <code>man cpp</code> for details.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Possible exception would be if you have a self-arrow (state doesn’t change) where no other actions need to be taken, e.g., when you are in the middle of ignoring a comment.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>I think you should not have to worry about <em>character literals</em> (single quotes) if you assume the input is valid C/C++.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>If you need more detailed instructions on setting this up, please consult the project 1 readme.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>
