@@ -10,7 +10,7 @@
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
- * #hours: 
+ * #hours:
  */
 
 #include <iostream>
@@ -29,9 +29,11 @@ struct node {
 	node(string s="", node* p=NULL, node* n=NULL) : data(s),prev(p),next(n) {}
 };
 
+
 int main(int argc, char *argv[]) {
 	/* define long options */
 	static int unique=0, reverse=0;
+
 	static struct option long_opts[] = {
 		{"unique",   no_argument,       &unique,   'u'},
 		{"reverse",  no_argument,       &reverse,  'r'},
@@ -51,10 +53,63 @@ int main(int argc, char *argv[]) {
 			case '?': /* this will catch unknown options. */
 				return 1;
 		}
+
 	}
-	/* NOTE: at this point, variables 'reverse' and 'unique' have been set
+	/* NOTE: at this point, variables
+	 * 'reverse' and 'unique' have been set
 	 * according to the command line.  */
-	/* TODO: finish writing this.  Maybe use while(getline(cin,line)) or
+	/* TO
+	 * DO: finish writing this.  Maybe use while(getline(cin,line)) or
 	 * similar to read all the lines from stdin. */
+	string line;
+	getline(cin , line);
+	node* l = new node(line, NULL, NULL);
+	node* p = l;
+	node* m = l;
+
+	while(getline(cin, line)){
+		p = new node(line, L , NULL);
+		while(m -> next != NULL){
+			if(m -> data != p -> data){ // m not equal to p
+				if(p -> data < m -> data){
+					m -> prev -> next = p;
+					p -> prev = m -> prev;
+					p -> next = m
+					m -> prev = p
+
+					l = p;
+				}
+			}
+			else
+				break;
+			}
+		}
+
+
+
+
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
