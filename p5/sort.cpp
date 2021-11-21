@@ -6,11 +6,11 @@
  * and the book, please list everything.  And remember- citing a source does
  * NOT mean it is okay to COPY THAT SOURCE.  What you submit here **MUST BE
  * YOUR OWN WORK**.
- * References:
+ * References: Twitch.tv/professor_wes
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
- * #hours:
+ * #hours: 10
  */
 
 #include <iostream>
@@ -162,39 +162,7 @@ int main(int argc, char *argv[]) {
 			m = m->prev;
 		}
 	}
-/*
-	else if(reverse && unique){
-		cout <<"this"<<endl;
-		while(m){
-			if(m->next != NULL)
-				m = m->next;
-			else
-				break;
-		}
-		p = m->prev;
 
-		while(m){
-			if(m -> data != p -> data){
-				cout << m-> data <<endl;
-				m = m -> prev;
-				if(p->prev == NULL){
-					cout << m->data <<endl;
-					break;}
-				else
-				p = p -> prev;
-			}
-
-			else{
-				m = m -> prev;
-				if(p->prev ==NULL){
-					cout << m->data <<endl;
-					break;}
-				else
-				p = p -> prev;
-			}
-		}
-	}
-*/
 	else{
 		while(m){
 			cout << m->data <<endl;
