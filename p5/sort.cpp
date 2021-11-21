@@ -68,25 +68,38 @@ int main(int argc, char *argv[]) {
 	node* m = l;
 
 	while(getline(cin, line)){
-		p = new node(line, L , NULL);
+		p = new node(line, NULL , NULL);
 		while(m -> next != NULL){
 			if(m -> data != p -> data){ // m not equal to p
 				if(p -> data < m -> data){
-					m -> prev -> next = p;
-					p -> prev = m -> prev;
-					p -> next = m
-					m -> prev = p
-
-					l = p;
+						if(m-> prev == NULL){
+							m -> prev = p;
+							p -> next = m;
+							l = p;
+						break;
+						}
+						else{
+							m -> prev -> next = p;
+							p -> prev = m -> prev;
+							p -> next = m;
+							m -> prev = p;
+						break;
+						}
+//					if(p -> prev == NULL){
+//						l = p;
+					}
+				}
+				else if(p -> data > m-> data && m-> next == NULL){
+					m -> next = p;
+					p -> prev = m;
+					break;
 				}
 			}
-			else
-				break;
-			}
+		m = l;
 		}
-
-
-
+	while(m->next != NULL){
+		cout << m->data<<endl;
+		}
 
 	return 0;
 }
