@@ -10,7 +10,7 @@
  *
  *
  * Finally, please indicate approximately how many hours you spent on this:
- * #hours: 
+ * #hours:
  */
 
 #include <iostream>
@@ -19,6 +19,8 @@ using std::cout;
 using std::endl;
 #include <getopt.h> // to parse long arguments.
 #include <cstdlib> // for atoi function
+
+void toh(int start,int end,int aux,int disc);
 
 /* Here's a skeleton main function for processing the arguments. */
 int main(int argc, char *argv[]) {
@@ -53,6 +55,27 @@ int main(int argc, char *argv[]) {
 
 	/* TODO: now that you have the options and arguments,
 	 * solve the puzzle. */
+	int aux = 6-end-start;
+	toh(start,end,aux,n);
 
 	return 0;
 }
+
+void toh(int start,int end,int aux,int disc){
+	if(disc == 0)
+		return;
+	toh(start,aux,end,disc-1);
+	cout << start << "\t" << end <<"\n";
+	toh(aux,end,start,disc-1);
+	}
+
+
+
+
+
+
+
+
+
+
+
